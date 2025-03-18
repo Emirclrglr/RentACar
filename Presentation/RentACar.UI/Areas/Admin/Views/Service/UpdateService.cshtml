@@ -1,0 +1,46 @@
+﻿@model UpdateServiceDto
+@{
+    ViewData["Title"] = "UpdateService";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+	<div class="card-body">
+
+		<h4 class="card-title text-center">Banner Düzenle</h4>
+
+		<form method="post" class="mt-5">
+			@Html.HiddenFor(x => x.Id)
+			<div class="form-group">
+				<label>Başlık</label>
+				<input type="text" class="form-control" placeholder="Başlık giriniz" required asp-for="Title" />
+			</div>
+			<div class="form-group">
+				<label>Açıklama</label>
+				<input type="text" class="form-control" placeholder="Açıklama giriniz" required asp-for="Description" />
+			</div>
+			<div class="form-group">
+				<label>İkon</label>
+				<select class="form-control" asp-for="Icon">
+					<option selected disabled>İkon Seçiniz</option>
+					<option value="flaticon-wedding-car">Düğün Arabası</option>
+					<option value="flaticon-car">Araba</option>
+					<option value="flaticon-suv">SUV</option>
+					<option value="flaticon-transportation">Toplu Taşıma</option>
+					<option value="flaticon-route">Rota</option>
+					<option value="flaticon-handshake">El Sıkışma</option>
+					<option value="flaticon-rent">Kira</option>
+					<option value="flaticon-dashboard">Gösterge Paneli</option>
+					<option value="flaticon-pistons">Pistonlar</option>
+					<option value="flaticon-car-seat">Araç Koltuğu</option>
+					<option value="flaticon-backpack">Sırt Çantası</option>
+					<option value="flaticon-diesel">Dizel</option>
+				</select>
+			</div>
+			<div class="mt-4">
+				<button type="submit" class="btn btn-primary waves-effect waves-light px-5">Kaydet</button>
+			</div>
+		</form>
+
+	</div>
+</div>

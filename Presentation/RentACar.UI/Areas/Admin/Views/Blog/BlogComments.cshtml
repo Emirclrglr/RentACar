@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ResultCommentDto>
+@{
+    ViewData["Title"] = "BlogComments";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Yorumlar</h4>
+                <hr />
+                @if (Model.Count() != 0)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <div class="media mb-3">
+                            <img class="d-flex mr-3 rounded-circle" src="https://www.londondentalsmiles.co.uk/wp-content/uploads/2017/06/person-dummy.jpg" alt="Generic placeholder image" height="48">
+                            <div class="media-body">
+                                <h5 class="mt-0">@item.Name</h5>
+                                @item.MessageContent
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                }
+                else
+                {
+                    <p>Blogda Henüz Yorum Bulunmuyor.</p>
+                }
+
+
+            </div> 
+        </div> 
+    </div> 
+</div>
+

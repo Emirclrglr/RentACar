@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_AdminHeadViewPartial")
+
+<body>
+
+    <div id="layout-wrapper">
+
+        @await Component.InvokeAsync("_AdminNavbarViewPartial")
+
+
+        @await Component.InvokeAsync("_AdminSidebarViewPartial")
+
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+
+                    @RenderBody()
+
+                </div>
+            </div>
+
+            @await Component.InvokeAsync("_AdminFooterViewPartial")
+
+        </div>
+
+    </div>
+    <div class="menu-overlay"></div>
+
+
+    @await Component.InvokeAsync("_AdminScriptsViewPartial")
+
+</body>
+
+</html>

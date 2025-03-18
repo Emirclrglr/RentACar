@@ -1,0 +1,122 @@
+﻿@using Newtonsoft.Json
+@using RentACar.UI.APIConnection
+@using Microsoft.Extensions.Configuration;
+@using System.Net.Http;
+@model X.PagedList.PagedList<ResultBlogsDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_UILayout.cshtml";
+
+	IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+	HttpClient httpClient = new();
+	ApiConfig apiConfig = new(configuration);
+
+	async Task<int> CommentCount(int id)
+	{
+		var responseMessage = await httpClient.GetAsync($"{apiConfig.BaseUrl}Comments/GetCommentCountByBlogId/{id}");
+		var jsonData = await responseMessage.Content.ReadAsStringAsync();
+		var values = JsonConvert.DeserializeObject<int>(jsonData);
+		return values;
+	}
+
+
+}
+
+<style>
+	.blog-card-shadow {
+		box-shadow: 7px 14px 32px 7px rgba(0,0,0,0.1);
+	}
+</style>
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/carbook-master/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+			<div class="col-md-9 ftco-animate pb-5">
+				<p class="breadcrumbs"><span class="mr-2"><a href="/">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>Bloglar <i class="ion-ios-arrow-forward"></i></span></p>
+				<h1 class="mb-3 bread">Bloglarımız</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="ftco-section">
+	<div class="container">
+		<div class="row justify-content-center mb-5">
+			<div class="col-md-7 heading-section text-center ftco-animate">
+				<span class="subheading">Blog</span>
+				<h2>Bloglarımız</h2>
+			</div>
+		</div>
+		<div class="row d-flex">
+			@foreach (var item in Model)
+			{
+				string title = "";
+				if (item.Title.Length > 45)
+					title = $"{item.Title.Substring(0, 45)}...";
+				else
+					title = item.Title;
+
+
+
+
+				<div class="col-md-4 ftco-animate mt-4">
+					<div class="card-deck">
+						<div class="card blog-card-shadow">
+							<div class="blog-entry justify-content-end ">
+								<a href="/Blog/BlogDetails/@item.Id" class="block-20" style="background-image: url('@item.CoverImgUrl');">
+								</a>
+								<div class="text pl-4 pr-4 pt-3">
+									<div class="meta mb-3">
+										<div><a href="/Blog/BlogDetails/@item.Id">@item.CreatedDate.ToString("dd MMM, yyyy")</a></div>
+										<div><a href="/Blog/BlogDetails/@item.Id">@item.AuthorName</a></div>
+										<div><a href="/Blog/BlogDetails/@item.Id" class="meta-chat"><span class="icon-chat"></span> @await CommentCount(item.Id)</a></div>
+									</div>
+									<h3 class="heading mt-2"><a href="/Blog/BlogDetails/@item.Id">@title</a></h3>
+									<p><a href="/Blog/BlogDetails/@item.Id" class="btn btn-primary">Devamını Oku</a></p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			}
+		</div>
+
+		<div class="row mt-5">
+			<div class="col text-center">
+				<div class="block-27">
+					<ul>
+						@if (Model.HasPreviousPage)
+						{
+							<li><a href="@Url.Action("Index", new { page = Model.PageNumber - 1 })">&lt;</a></li>
+						}
+
+						@for (int i = 1; i <= Model.PageCount; i++)
+						{
+							if (i == Model.PageNumber)
+							{
+								<li class="active"><span>@i</span></li>
+							}
+							else
+							{
+								<li><a href="@Url.Action("Index", new { page = i })">@i</a></li>
+							}
+						}
+
+						@if (Model.HasNextPage)
+						{
+							<li><a href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">&gt;</a></li>
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+

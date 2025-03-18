@@ -1,0 +1,114 @@
+﻿@model CreateCarDto
+@{
+	ViewData["Title"] = "CreateCar";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+	<div class="card-body">
+
+		<h4 class="card-title text-center">Yeni Araç Girişi</h4>
+
+		<form method="post" class="mt-5">
+			<div class="row">
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Marka</label>
+						@Html.DropDownListFor(x => x.BrandId, (List<SelectListItem>)ViewBag.brandList, new { @class = "form-control"})
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Model</label>
+						<input class="form-control" type="text" placeholder="Model giriniz" required asp-for="Model"/>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Kilometre</label>
+						<input class="form-control" type="number" placeholder="0 km/h" required asp-for="Kilometer"/>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Vites Türü</label>
+						<select class="form-control" asp-for="Transmission" required>
+							<option disabled selected>Vites Türü Seçiniz</option>
+							<option value="Automatic">Automatic</option>
+							<option value="Manual">Manual</option>
+							<option value="Auto / Manual">Auto / Manual</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Koltuk Sayısı</label>
+						<select class="form-control" asp-for="Seats" required>
+							<option disabled selected>Koltuk sayısı seçiniz</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Bagaj Sayısı</label>
+						<select class="form-control" asp-for="Luggage" required>
+							<option disabled selected>Bagaj sayısı seçiniz</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Yakıt Türü</label>
+						<select class="form-control" asp-for="FuelType" required>
+							<option disabled selected>Yakıt türü seçiniz</option>
+							<option value="Gas">Gas</option>
+							<option value="Diesel">Diesel</option>
+							<option value="Electric">Electric</option>
+							<option value="LPG">LPG</option>
+							<option value="Hybrid">Hybrid</option>
+						</select>
+					</div>
+				</div>
+
+
+				<div class="col-3">
+					<div class="form-group">
+						<label>Küçük Resim</label>
+						<input type="text" class="form-control" placeholder="Küçük resim giriniz" required asp-for="CoverIMG"/>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-group">
+				<label>Büyük Resim</label>
+				<input type="text" class="form-control" placeholder="Büyük resim giriniz" required asp-for="BigIMG" />
+			</div>
+
+			<div class="mt-4">
+				<button type="submit" class="btn btn-primary waves-effect waves-light px-5">Kaydet</button>
+				<button type="reset" class="btn btn-danger waves-effect waves-light px-5">Sil</button>
+			</div>
+		</form>
+
+	</div>
+</div>

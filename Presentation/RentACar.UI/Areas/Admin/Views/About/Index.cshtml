@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ResultAboutDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row d-flex justify-content-center">
+	<div class="col-md-8 ">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title mb-4">Hakkımızda İşlemleri</h4>
+
+				<div class="table-responsive">
+					<table class="table table-hover mb-0">
+						<thead>
+							<tr class="text-center">
+								<th>Başlık</th>
+								<th width="110">Düzenle</th>
+								<th width="110">Sitede Gör</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr class="text-center" style="font-size: 14px">
+									<td class="align-middle">@item.Title</td>
+									<td class="align-middle"><a href="/Admin/About/UpdateAbout/@item.Id" class="rounded-pill btn btn-outline-primary"><i class="las la-edit" style="font-size: 20px"></i></a></td>
+									<td class="align-middle"><a href="/About" class="rounded-pill btn btn-outline-success" target="_blank"><i class="las la-hand-point-right" style="font-size: 20px"></i></a></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+

@@ -1,0 +1,66 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	int carPricingPage = 1;
+	var queryVal = ViewContext.HttpContext.Request.Query["carPricingPage"].ToString();
+	if (!string.IsNullOrEmpty(queryVal))
+	{
+		int.TryParse(queryVal, out carPricingPage);
+	}
+}
+
+
+
+<!-- start page title -->
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box d-flex align-items-center justify-content-between">
+			<h4 class="mb-0 font-size-18">Dashboard</h4>
+
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="/Admin/Dashboard">Rent A Car</a></li>
+					<li class="breadcrumb-item active">Dashboard</li>
+				</ol>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+@await Component.InvokeAsync("_DashboardStatisticsViewPartial")
+<!-- end row -->
+
+<div class="row">
+
+	<!--Chart 1-->
+	@await Component.InvokeAsync("_DashboardChart1ViewPartial")
+
+	<!--Chart 2-->
+	@await Component.InvokeAsync("_DashboardChart2ViewPartial")
+
+	<!--Chart 3-->
+	@await Component.InvokeAsync("_DashboardChart3ViewPartial")
+
+</div>
+<!-- end row-->
+
+<div class="row">
+	@await Component.InvokeAsync("_DashboardCarPricingListViewPartial", new { page = carPricingPage})
+
+	@await Component.InvokeAsync("_DashboardLast5BlogsViewPartial")
+
+</div>
+
+<!-- Overlay-->
+<div class="menu-overlay"></div>
+
+
+<!-- jQuery  -->
+
+
+<script src="~/Admin/plugins/morris-js/morris.min.js"></script>
+<script src="~/Admin/plugins/raphael/raphael.min.js"></script>
+
+<script src="~/Admin/vertical/assets/pages/dashboard-demo.js"></script>
+<script src="~/Admin/vertical/assets/js/theme.js"></script>

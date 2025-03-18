@@ -1,0 +1,89 @@
+﻿@using RentACar.UI.APIConnection
+@using Microsoft.Extensions.Configuration
+@{
+    IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+    ApiConfig apiConfig = new(configuration);
+    var address = apiConfig.BaseUrl;
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title d-inline-block">Lokasyonlarda Bulunan Araç Sayıları</h4>
+
+            <!-- Grafik yüksekliğini artır -->
+            <div style="height: 260px;">
+                <canvas id="locationBarChart"></canvas>
+            </div>
+
+            <div class="row text-center mt-4">
+                <div class="col-12">
+                    <h4>@ViewBag.locationCount</h4>
+                    <p class="text-muted mb-0">Toplam Lokasyon Sayısı</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+          try {
+              const response = await fetch("@($"{apiConfig.BaseUrl}CarBookings/GetCarBookingsLocationWithCarCount")");
+              const data = await response.json();
+
+              const locations = data.map(item => item.locationName);
+              const counts = data.map(item => item.vehicleCount);
+
+              var ctx = document.getElementById("locationBarChart").getContext("2d");
+              new Chart(ctx, {
+                  type: "bar",
+                  data: {
+                      labels: locations,
+                      datasets: [{
+                          label: "Araç Sayısı",
+                          data: counts,
+                          backgroundColor: "#03a9f4",
+                          borderColor: "#0288d1",
+                          borderWidth: 1,
+                          hoverBackgroundColor: "#0288d1"
+                      }]
+                  },
+                  options: {
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      indexAxis: 'y', // YATAY BAR CHART İÇİN BU AYARI EKLEDİK
+                      scales: {
+                          x: {
+                              beginAtZero: true,
+                              title: {
+                                  display: true,
+                                  text: 'Araç Sayısı'
+                              }
+                          },
+                          y: {
+                              title: {
+                                  display: true,
+                                  text: 'Lokasyon'
+                              }
+                          }
+                      },
+                      plugins: {
+                          legend: {
+                              display: true,
+                              position: "top"
+                          },
+                          tooltip: {
+                              callbacks: {
+                                  label: function(context) {
+                                      return context.parsed.x + " araç";
+                                  }
+                              }
+                          }
+                      }
+                  }
+              });
+          } catch (error) {
+              console.error("Veri çekilirken hata oluştu:", error);
+          }
+      });</script>

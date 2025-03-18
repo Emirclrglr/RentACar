@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ResultCommentDto>
+
+@if(Model.Count() != 0)
+{
+    <h3 class="mb-5">@ViewBag.MessageCount Yorum</h3>
+    <ul class="comment-list">
+        @foreach (var item in Model)
+        {
+            <li class="comment">
+                <div class="vcard bio">
+                    <img src="https://www.londondentalsmiles.co.uk/wp-content/uploads/2017/06/person-dummy.jpg" alt="Image placeholder">
+                </div>
+                <div class="comment-body">
+                    <h3>@item.Name</h3>
+                    <div class="meta">@item.CreatedDate.ToString("dd MMM, yyyy HH:mm")</div>
+                    <p>@item.MessageContent</p>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h3 class="mb-5">0 Yorum</h3>
+    <h5 class="mb-5">Henüz yorum yok, ilk yorumu siz yapın.</h5>
+
+}

@@ -1,0 +1,38 @@
+﻿@model UpdateFooterAddressDto
+@{
+    ViewData["Title"] = "UpdateAddress";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+	<div class="card-body">
+
+		<h4 class="card-title text-center">Adres Düzenle</h4>
+
+		<form method="post" class="mt-5">
+			@Html.HiddenFor(x => x.Id)
+			<div class="form-group">
+				<label>Adres</label>
+				<input type="text" class="form-control" placeholder="Adres giriniz" required asp-for="Address" />
+			</div>
+			<div class="form-group">
+				<label>Açıklama</label>
+				<input type="text" class="form-control" placeholder="Açıklama giriniz" required asp-for="FooterDescription" />
+			</div>
+			<div class="form-group">
+				<label>Telefon</label>
+				<input type="text" class="form-control" placeholder="Tel. No. giriniz" required asp-for="Phone" />
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" class="form-control" placeholder="Email giriniz" required asp-for="Mail" />
+			</div>
+			<div class="mt-4">
+				<button type="submit" class="btn btn-primary waves-effect waves-light px-5">Kaydet</button>
+			</div>
+		</form>
+
+	</div>
+</div>
+
+

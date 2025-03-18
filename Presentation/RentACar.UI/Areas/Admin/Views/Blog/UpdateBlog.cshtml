@@ -1,0 +1,46 @@
+﻿@model UpdateBlogDto
+
+@{
+    ViewData["Title"] = "UpdateBlog";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card">
+	<div class="card-body">
+
+		<h4 class="card-title text-center">Blog Düzenle</h4>
+
+		<form method="post" class="mt-5">
+			@Html.HiddenFor(x=>x.Id)
+			@Html.HiddenFor(x=>x.CreatedDate)
+			<div class="form-group">
+				<label>Yazar</label>
+				@Html.DropDownListFor(x => x.AuthorId, (List<SelectListItem>)ViewBag.authorList, new { @class = "form-control" })
+			</div>
+			<div class="form-group">
+				<label>Kategori</label>
+				@Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.categoryList, new { @class = "form-control" })
+			</div>
+			<div class="form-group">
+				<label>Blog Başlığı</label>
+				<input type="text" class="form-control" placeholder="Blog başlığı giriniz" required asp-for="Title" />
+			</div>
+			<div class="form-group">
+				<label>Görsel Url</label>
+				<input type="text" class="form-control" placeholder="Görsel url giriniz" required asp-for="CoverImgUrl" />
+			</div>
+
+			<div class="form-group">
+				<label>Blog Yazısı</label>
+				<textarea class="form-control" asp-for="Description" style="height: 300px"></textarea>
+			</div>
+
+			<div class="mt-4">
+				<button type="submit" class="btn btn-primary waves-effect waves-light px-5">Kaydet</button>
+			</div>
+		</form>
+
+	</div>
+</div>
+

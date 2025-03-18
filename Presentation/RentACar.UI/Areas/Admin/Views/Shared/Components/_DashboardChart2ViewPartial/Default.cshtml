@@ -1,0 +1,65 @@
+﻿@using RentACar.UI.APIConnection
+@using Microsoft.Extensions.Configuration
+@{
+	IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+	ApiConfig apiConfig = new(configuration);
+	var address = apiConfig.BaseUrl;
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title d-inline-block">Araç Markalarına Göre Sahip Olduğumuz Araç Sayıları</h4>
+            <div style="height: 260px;">
+                <canvas id="brandPieChart"></canvas>
+            </div>
+            <div class="row text-center mt-4">
+                <div class="col-6">
+                    <h4>@ViewBag.carCount</h4>
+                    <p class="text-muted mb-0">Toplam Araç Sayısı</p>
+                </div>
+                <div class="col-6">
+                    <h4>@ViewBag.brandCount</h4>
+                    <p class="text-muted mb-0">Toplam Marka Sayısı</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        try {
+            const response = await fetch("@($"{apiConfig.BaseUrl}Cars/GetBrandsWithCarCount")");
+            const data = await response.json();
+
+            const brands = data.map(item => item.brandName); // Markalar
+            const counts = data.map(item => item.vehicleCount); // Araç sayıları
+
+            var ctx = document.getElementById("brandPieChart").getContext("2d");
+            new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: brands,
+                    datasets: [{
+                        data: counts,
+                        backgroundColor: ["#4caf50", "#ff9800", "#03a9f4", "#e91e63", "#9c27b0"],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: "bottom"
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("Veri çekilirken hata oluştu:", error);
+        }
+    });
+</script>

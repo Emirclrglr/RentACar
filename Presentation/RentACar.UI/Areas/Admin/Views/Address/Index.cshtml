@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ResultFooterAddressDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row d-flex justify-content-center">
+	<div class="col-md-12 ">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title mb-4">Adres İşlemleri</h4>
+
+				<div class="table-responsive">
+					<table class="table table-hover mb-0">
+						<thead>
+							<tr class="text-center">
+								<th>Adres</th>
+								<th>Açıklama</th>
+								<th>Telefon</th>
+								<th>Email</th>
+								<th width="110">Düzenle</th>
+								<th width="110">Sitede Gör</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								string descriptionFormat = "";
+								if (item.FooterDescription.Length >= 80)
+									descriptionFormat = $"{item.FooterDescription.Substring(0, 80)}...";
+								else
+									descriptionFormat = item.FooterDescription;
+
+								<tr class="text-center" style="font-size: 14px">
+									<td class="align-middle">@item.Address</td>
+									<td class="align-middle">@descriptionFormat</td>
+									<td class="align-middle">@item.Phone</td>
+									<td class="align-middle">@item.Mail</td>
+									<td class="align-middle"><a href="/Admin/Address/UpdateAddress/@item.Id" class="rounded-pill btn btn-outline-primary"><i class="las la-edit" style="font-size: 20px"></i></a></td>
+									<td class="align-middle"><a href="/Home" class="rounded-pill btn btn-outline-success" target="_blank"><i class="las la-hand-point-right" style="font-size: 20px"></i></a></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+

@@ -1,0 +1,122 @@
+﻿@using System.Globalization
+@model  X.PagedList.IPagedList<ResultCarPricingWithTimePeriodDto>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_UILayout.cshtml";
+	CultureInfo cultureInfo = new CultureInfo("tr-TR");
+	cultureInfo.NumberFormat.CurrencyPositivePattern = 3;
+}
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/carbook-master/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+			<div class="col-md-9 ftco-animate pb-5">
+				<p class="breadcrumbs">
+					<span class="mr-2"><a href="/">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span>
+					<span>Paketler <i class="ion-ios-arrow-forward"></i></span>
+				</p>
+				<h1 class="mb-3 bread">Araç Fiyat Paketleri</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="ftco-section ftco-cart">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 ftco-animate">
+				<div class="car-list">
+					<table class="table">
+						<thead class="thead-primary">
+							<tr class="text-center">
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th class="bg-primary heading">Saatlik Kiralama Ücreti</th>
+								<th class="bg-dark heading">Günlük Kiralama Ücreti</th>
+								<th class="bg-black heading">Haftalık Kiralama Ücreti</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr class="">
+									<td class="car-image"><div class="img" style="background-image:url(@item.CoverIMG);"></div></td>
+									<td class="product-name p-3">
+										<h3>@item.Model</h3>
+									</td>
+
+									<td class="price">
+										<p class="btn-custom"><a href="/Reservation/Index/@item.CarId">Hemen Kirala</a></p>
+										<div class="price-rate">
+											<h3>
+												<span class="num"><small class="currency"></small> @item.HourlyPrice.ToString("C0", cultureInfo)</span>
+												<span class="per">/ Saatlik</span>
+											</h3>
+											<span class="subheading">Saatlik 50₺ ek yakıt ücreti</span>
+										</div>
+									</td>
+
+									<td class="price">
+										<p class="btn-custom"><a href="/Reservation/Index/@item.CarId">Hemen Kirala</a></p>
+										<div class="price-rate">
+											<h3>
+												<span class="num"><small class="currency"></small> @item.DailyPrice.ToString("C0", cultureInfo)</span>
+												<span class="per">/ Günlük</span>
+											</h3>
+											<span class="subheading">Saatlik 50₺ ek yakıt ücreti</span>
+										</div>
+									</td>
+
+									<td class="price">
+										<p class="btn-custom"><a href="/Reservation/Index/@item.CarId">Hemen Kirala</a></p>
+										<div class="price-rate">
+											<h3>
+												<span class="num"><small class="currency"></small> @item.WeeklyPrice.ToString("C0", cultureInfo)</span>
+												<span class="per">/ Haftalık</span>
+											</h3>
+											<span class="subheading">Saatlik 50₺ ek yakıt ücreti</span>
+										</div>
+									</td>
+								</tr>
+
+								<!-- END TR-->
+							}
+
+						</tbody>
+					</table>
+				</div>
+				<div class="row mt-5">
+					<div class="col text-center">
+						<div class="block-27">
+							<ul>
+								@if (Model.HasPreviousPage)
+								{
+									<li><a href="@Url.Action("Index", new { page = Model.PageNumber - 1 })">&lt;</a></li>
+								}
+
+								@for (int i = 1; i <= Model.PageCount; i++)
+								{
+									if (i == Model.PageNumber)
+									{
+										<li class="active"><span>@i</span></li>
+									}
+									else
+									{
+										<li><a href="@Url.Action("Index", new { page = i })">@i</a></li>
+									}
+								}
+
+								@if (Model.HasNextPage)
+								{
+									<li><a href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">&gt;</a></li>
+								}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

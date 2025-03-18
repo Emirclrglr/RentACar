@@ -1,0 +1,102 @@
+﻿@model X.PagedList.IPagedList<ResultTestimonialDto>
+
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+	<div class="card-body">
+		<h4 class="card-title text-center mb-4">Referans İşlemleri</h4>
+
+		<div class="table-responsive">
+			<table class="table table-hover mb-0">
+				<thead>
+					<tr class="text-center">
+						<th>Görsel</th>
+						<th>Referans Adı</th>
+						<th>Referans Unvanı</th>
+						<th width="150">Yorumu Görüntüle</th>
+						<th>Sitede Görüntüle</th>
+						<th>Düzenle</th>
+						<th>Sil</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr class="text-center" style="font-size: 14px">
+							<td class="align-middle"><img src="@item.ImageURL" class="rounded" style="width: 150px; height: 100px" /></td>
+							<td class="align-middle">@item.TestimonialName</td>
+							<td class="align-middle">@item.TestimonialTitle</td>
+							<td class="align-middle">
+								<button value="@item.Id" class="rounded-pill btn btn-outline-success viewMessage">
+									<i class="las la-comment" style="font-size: 20px"></i>
+								</button>
+							</td>
+							<td class="align-middle"><a target="_blank" href="/Home/#testimonials" class="rounded-pill btn btn-outline-info"><i class="las la-hand-point-right" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/Testimonial/UpdateTestimonial/@item.Id" class="rounded-pill btn btn-outline-primary"><i class="las la-edit" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/Testimonial/DeleteTestimonial/@item.Id" class="rounded-pill btn btn-outline-danger"><i class="las la-trash" style="font-size: 20px"></i></a></td>
+
+						</tr>
+					}
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+	<!-- end card-body-->
+
+	<div class="d-flex justify-content-between">
+		<a href="/Admin/Testimonial/CreateTestimonial" class="btn btn-outline-primary ml-5 mt-3 px-5" style="height: 36px">+ Yeni Referans Girişi</a>
+		<nav aria-label="Sayfalandırma" class="d-flex justify-content-end mt-3 mb-3 mr-5" style="font-size: 16px">
+			@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+							new PagedListRenderOptions
+			{
+				LiElementClasses = new[] { "page-item mr-2" },
+				PageClasses = new[] { "page-link" }
+			})
+		</nav>
+	</div>
+
+</div>
+
+<div class="modal fade" id="messageDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				....
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$(".viewMessage").click(function () {
+			var messageId = $(this).val();
+			$.ajax({
+				url: "/Admin/Testimonial/TestimonialComment/" + messageId,
+				type: "GET",
+				success: function (response) {
+					$("#messageDetailsModal .modal-body").text(response.testimonialComment);
+					$("#messageDetailsModal").modal("show");
+				},
+				error: function () {
+					alert("Mesaj detayları alınamadı!");
+				}
+			});
+		});
+	});
+</script>

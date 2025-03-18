@@ -1,0 +1,384 @@
+﻿@model ResultFooterAddressDto
+
+<footer class="ftco-footer ftco-bg-dark ftco-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2"><a href="#" class="logo">Rent A<span>Car</span></a></h2>
+                    <p>@Model.FooterDescription</p>
+                    @await Component.InvokeAsync("_SocialMediaViewPartial")
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">Hızlı Linkler</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="/About" class="py-2 d-block">Hakkımızda</a></li>
+                        <li><a href="/Service" class="py-2 d-block">Hizmetlerimiz</a></li>
+                        <li><a href="#" class="py-2 d-block" data-toggle="modal" data-target="#termsModal">Şartlar & Koşullar</a></li>
+                        <li><a href="#" class="py-2 d-block" data-toggle="modal" data-target="#securityModal">Güvenlik</a></li>
+                        <li><a href="#" class="py-2 d-block" data-toggle="modal" data-target="#privacyModal">Gizlilik & Çerez Politikası</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Müşteri Desteği</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block" data-toggle="modal" data-target="#faqModal">Sıkça Sorulanlar</a></li>
+                        <li><a href="#" class="py-2 d-block" data-toggle="modal" data-target="#paymentModal">Ödeme Yöntemleri</a></li>
+                        <li><a href="#" class="py-2 d-block" data-toggle="modal" data-target="#rentalModal">Kiralama</a></li>
+                        <li><a href="#" class="py-2 d-block" data-toggle="modal" data-target="#howItWorksModal">Nasıl Çalışır?</a></li>
+                        <li><a href="/Contact" class="py-2 d-block">Bize Yazın</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Bir sorunuz mu var?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">@Model.Address</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">(+90) @Model.Phone</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text pl-4">@Model.Mail</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Şartlar & Koşullar Modal -->
+<div id="termsModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Şartlar & Koşullar</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Rent A Car, araç kiralama hizmetleri sunmaktadır. Aşağıdaki şartlar ve koşullar, siteyi kullanarak araç kiralama hizmetlerimizden faydalanan tüm kullanıcılar için geçerlidir. Lütfen bu şartları dikkatlice okuyunuz. Siteyi kullanarak bu şartları kabul etmiş sayılırsınız.</p>
+
+                <h2>1. Tanımlar</h2>
+                <ul>
+                    <li><strong>Kullanıcı:</strong> Bu Site'yi ziyaret eden veya araç kiralama işlemi yapan gerçek veya tüzel kişi.</li>
+                    <li><strong>Araç Kiralama:</strong> Site aracılığıyla bir araç kiralama işlemi gerçekleştirme süreci.</li>
+                </ul>
+
+                <h2>2. Hizmetler</h2>
+                <p>Rent A Car, kullanıcılarına araç kiralama hizmetleri sunmaktadır. Kullanıcılar, araçları belirli bir süre için kiralama hakkına sahiptir. Kiralama süresi, araç teslimatı ve iade zamanları kullanıcının tercihine bağlıdır.</p>
+
+                <h2>3. Kiralama Koşulları</h2>
+                <ul>
+                    <li>Araç kiralama için en az 21 yaşında olmanız ve geçerli bir sürücü belgeniz bulunması gerekmektedir.</li>
+                    <li>Kiralama süresi, rezervasyon sırasında belirttiğiniz tarih ve saatte başlar ve belirtilen tarihte sona erer.</li>
+                    <li>Kiralama sırasında ödeme, belirtilen ücretler ve ek hizmetlerle birlikte alınacaktır.</li>
+                    <li>Kiralanan araç yalnızca belirtilen kişi tarafından kullanılabilir. Başka kişilere devredilemez veya kiralanamaz.</li>
+                </ul>
+
+                <h2>4. Ödeme ve İade</h2>
+                <ul>
+                    <li>Araç kiralama ücretleri, Site üzerinden yapılacak rezervasyonlar sırasında belirtilen tutara göre belirlenir.</li>
+                    <li>Ödeme, kredi kartı veya Site tarafından kabul edilen diğer ödeme yöntemleriyle yapılabilir.</li>
+                    <li>Kiralanan araç iade edilene kadar kullanıcı, araca ilişkin tüm masraflardan sorumludur.</li>
+                    <li>İade, belirtilen tarihe kadar yapılmazsa, ek ücretler talep edilebilir.</li>
+                </ul>
+
+                <h2>5. Kullanıcı Sorumlulukları</h2>
+                <ul>
+                    <li>Araç kiralama sırasında sağladığınız tüm bilgilerin doğru ve güncel olduğundan emin olunuz.</li>
+                    <li>Kiralanan aracı dikkatli ve sorumlu bir şekilde kullanmak, tüm trafik kurallarına uymak zorundasınız.</li>
+                    <li>Aracın sigorta kapsamı dışında kalacak herhangi bir zarar veya hasar, kullanıcı tarafından karşılanacaktır.</li>
+                </ul>
+
+                <h2>6. Sigorta ve Hasar</h2>
+                <ul>
+                    <li>Kiralanan araç, standart sigorta poliçesi ile teminat altına alınmıştır. Ancak, kiralama süresi boyunca araca verilecek zararlar kullanıcı tarafından karşılanacaktır.</li>
+                    <li>Kaza, çalınma, vandalizm veya doğal afetler sonucu meydana gelen hasarlar kullanıcı sorumluluğundadır.</li>
+                </ul>
+
+                <h2>7. İptal ve Değişiklik</h2>
+                <ul>
+                    <li>Rezervasyon iptali veya değişikliği, belirli bir süre önceden bildirilmesi gerekmektedir. İptal politikasına bağlı olarak belirli bir ücret kesilebilir.</li>
+                    <li>İptal ve değişiklik şartları, araç kiralama anlaşmasına göre değişebilir.</li>
+                </ul>
+
+                <h2>8. Yasal Sorumluluk</h2>
+                <p>Bu Site'nin kullanımıyla ilgili olarak, yasaların izin verdiği en geniş ölçüde, Site sahibi veya hizmet sağlayıcısı, dolaylı, tesadüfi, özel veya cezai zararlardan sorumlu tutulamaz.</p>
+
+                <h2>9. Gizlilik</h2>
+                <p>Kullanıcı bilgileri, yalnızca araç kiralama işlemlerinin gerçekleştirilmesi amacıyla toplanır ve Site’nin gizlilik politikasına uygun olarak korunur.</p>
+
+                <h2>10. Değişiklikler</h2>
+                <p>Site, bu şartları dilediği zaman değiştirme hakkına sahiptir. Yine de değişikliklerin geçerliliği, Site’ye yeni bir kullanım gerçekleştiren kullanıcılar için geçerli olacaktır.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Güvenlik Modal -->
+<div id="securityModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Güvenlik</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Site, kullanıcıların güvenliğini sağlamak için çeşitli önlemler alır. Ancak, internet üzerinden yapılan işlemlerin doğası gereği, tam anlamıyla güvenliğin garanti edilemeyeceğini unutmamalısınız.</p>
+
+                <ul>
+                    <li><strong>Veri Güvenliği:</strong> Site, kullanıcı bilgilerini güvenli bir şekilde saklamak için şifreleme ve güvenlik duvarı teknolojileri gibi çeşitli yöntemler kullanır. Ancak, kullanıcıların kendi hesap bilgilerini gizli tutmaları önemlidir.</li>
+                    <li><strong>Kişisel Bilgiler:</strong> Kullanıcılar, kişisel bilgilerini yalnızca güvenilir ve şifreli bağlantılar üzerinden paylaşmalıdır. Site, kullanıcıların kişisel bilgilerini yalnızca araç kiralama işlemlerinin gerçekleştirilmesi amacıyla kullanır.</li>
+                    <li><strong>Üçüncü Taraf Siteler:</strong> Site, üçüncü taraf bağlantılara veya sitelere yönlendirebilir. Bu tür sitelerin güvenliği, Site'nin kontrolü dışında olup, bu sitelerin gizlilik ve güvenlik politikaları konusunda sorumluluk kabul edilmez.</li>
+                    <li><strong>Hesap Güvenliği:</strong> Kullanıcılar, hesaplarının güvenliği için şifrelerini kimseyle paylaşmamalı ve güvenli bir şifre kullanmalıdır. Hesap güvenliği ile ilgili herhangi bir şüphe durumunda hemen iletişime geçilmesi gerekmektedir.</li>
+                </ul>
+
+                <p>Site, kullanıcıların güvenliğini sağlamak için en iyi çabayı gösterse de, internetin doğası gereği her zaman %100 güvenlik sağlanamayabilir. Kullanıcılar, Site'yi kullanırken kendi güvenliklerinden sorumludur.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gizlilik & Çerez Politikası Modal -->
+<div id="privacyModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Gizlilik & Çerez Politikası</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Site, kullanıcıların gizliliğine büyük önem verir ve kişisel bilgilerinizi yalnızca belirli amaçlarla toplar ve kullanır. Bu gizlilik politikası, kullanıcı bilgilerinin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi verir.</p>
+
+                <h3>12.1. Kişisel Bilgilerin Toplanması</h3>
+                <p>Site, araç kiralama işlemi gerçekleştiren kullanıcıların aşağıdaki bilgilerini toplayabilir:</p>
+                <ul>
+                    <li>Ad, soyad, e-posta adresi, telefon numarası ve diğer iletişim bilgileri</li>
+                    <li>Sürücü belgesi bilgileri</li>
+                    <li>Ödeme bilgileri (kredi kartı vb.)</li>
+                    <li>IP adresi ve tarayıcı bilgileri</li>
+                </ul>
+                <p>Kişisel bilgiler, yalnızca araç kiralama işlemlerinin gerçekleştirilmesi, müşteri hizmetleri desteği ve Site'nin iyileştirilmesi için kullanılacaktır.</p>
+
+                <h3>12.2. Çerezler (Cookies)</h3>
+                <p>Site, kullanıcı deneyimini geliştirmek amacıyla çerezler (cookies) kullanabilir. Çerezler, kullanıcıların tarayıcılarına yerleştirilen küçük metin dosyalarıdır. Bu çerezler, aşağıdaki amaçlarla kullanılabilir:</p>
+                <ul>
+                    <li>Site'nin kullanımını analiz etmek</li>
+                    <li>Kullanıcı tercihlerini hatırlamak</li>
+                    <li>Web sitesi trafiğini izlemek ve Site'yi iyileştirmek</li>
+                    <li>Kullanıcılara kişiselleştirilmiş içerik sunmak</li>
+                </ul>
+                <p>Çerezleri kabul etmek zorunlu değildir. Tarayıcı ayarlarından çerezleri devre dışı bırakabilirsiniz, ancak bu durumda Site'nin bazı özellikleri düzgün çalışmayabilir.</p>
+
+                <h3>12.3. Bilgilerin Kullanımı</h3>
+                <p>Toplanan kişisel bilgiler şu amaçlarla kullanılabilir:</p>
+                <ul>
+                    <li>Yedekleme ve fatura bilgileri oluşturmak</li>
+                    <li>Kullanıcı ile iletişim kurmak, rezervasyon doğrulaması veya müşteri hizmetleri sağlamak</li>
+                    <li>Hizmetleri iyileştirmek ve kişiselleştirilmiş deneyim sağlamak</li>
+                    <li>Yasal yükümlülükleri yerine getirmek</li>
+                </ul>
+
+                <h3>12.4. Bilgilerin Paylaşılması</h3>
+                <p>Site, kullanıcı bilgilerini üçüncü şahıslarla yalnızca aşağıdaki durumlarda paylaşabilir:</p>
+                <ul>
+                    <li>Yasal bir zorunluluk olduğunda (örneğin, mahkeme kararı veya yasal soruşturma)</li>
+                    <li>Hizmet sağlayıcılarla (örneğin, ödeme işlemleri için) bilgi paylaşılabilir, ancak bu üçüncü şahıslar sadece belirli hizmetleri sağlamak amacıyla bu bilgilere erişebilir.</li>
+                </ul>
+
+                <h3>12.5. Bilgilerin Güvenliği</h3>
+                <p>Site, kullanıcı bilgilerini korumak için endüstri standartlarına uygun güvenlik önlemleri alır. Ancak, internet üzerinden yapılan veri iletiminde hiçbir güvenlik yöntemi %100 güvenli değildir. Bu nedenle, Site kullanıcı bilgilerini korumak için en iyi çabayı gösterse de, tamamen güvenli bir ortam sağlanamayabilir.</p>
+
+                <h3>12.6. Gizlilik Politikasındaki Değişiklikler</h3>
+                <p>Site, bu Gizlilik Politikası’nı zaman zaman güncelleyebilir. Politika üzerinde yapılan değişiklikler, Site’de yayınlandığı tarihten itibaren geçerli olacaktır. Kullanıcılar, bu politikayı düzenli olarak kontrol etmelidir.</p>
+
+                <h3>12.7. İletişim</h3>
+                <p>Gizlilik politikamızla ilgili herhangi bir sorunuz veya endişeniz varsa, bizimle iletişime geçebilirsiniz:</p>
+                <ul>
+                    <li>E-posta: <a href="mailto:support@example.com">support@example.com</a></li>
+                    <li>Telefon: +90 123 456 7890</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sıkça Sorulanlar Modal -->
+<div id="faqModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sıkça Sorulan Sorular</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>13.1. Araç kiralama için hangi şartlar gereklidir?</h3>
+                <p>Araç kiralamak için en az 21 yaşında olmanız ve geçerli bir sürücü belgeniz olması gerekmektedir. Ayrıca, kredi kartı veya diğer ödeme yöntemleri ile ödeme yapabilmeniz gerekmektedir.</p>
+
+                <h3>13.2. Hangi ödeme yöntemleri ile ödeme yapabilirim?</h3>
+                <p>Site üzerinden araç kiralarken kredi kartı, banka kartı veya diğer desteklenen ödeme yöntemleri ile ödeme yapabilirsiniz. Ödeme seçenekleri, rezervasyon sırasında belirtilecektir.</p>
+
+                <h3>13.3. Araç kiralamak için depozito ödemem gerekiyor mu?</h3>
+                <p>Evet, araç kiralama işlemi sırasında genellikle bir depozito talep edilir. Depozito, araca zarar verilmediği takdirde kiralama süresi sonunda iade edilir. Depozito tutarı, aracın türüne ve kiralama süresine göre değişiklik gösterebilir.</p>
+
+                <h3>13.4. Araç kiralama süresi nasıl hesaplanır?</h3>
+                <p>Araç kiralama süresi, rezervasyon sırasında belirlediğiniz teslim ve iade tarihine göre hesaplanır. Eğer aracı erken iade ederseniz, fark ödenebilir veya uzun süreli kiralama durumunda ek ücretler uygulanabilir.</p>
+
+                <h3>13.5. Aracımı nasıl teslim alabilirim?</h3>
+                <p>Rezervasyon sırasında belirtilen teslimat noktasında, kiralama sırasında verilen belgelerle aracınızı teslim alabilirsiniz. Araç teslimatı sırasında kimlik doğrulama yapılacak ve araç kontrolü yapılacaktır.</p>
+
+                <h3>13.6. Kiralanan araçta bir hasar oluşursa ne yapmalıyım?</h3>
+                <p>Aracınızda herhangi bir hasar meydana gelirse, hemen kiralama şirketiyle iletişime geçmelisiniz. Hasar durumunda, sigorta kapsamı dışında kalan zararlar kullanıcı tarafından karşılanacaktır.</p>
+
+                <h3>13.7. Rezervasyonumu değiştirebilir veya iptal edebilir miyim?</h3>
+                <p>Evet, rezervasyonunuzu değiştirebilir veya iptal edebilirsiniz. Ancak, iptal ve değişiklik işlemleri belirli bir süre önceden yapılmalıdır. İptal ve değişiklik politikalarına bağlı olarak belirli bir ücret kesilebilir.</p>
+
+                <h3>13.8. Aracımı ne zaman iade etmeliyim?</h3>
+                <p>Aracınızı, rezervasyon sırasında belirttiğiniz tarih ve saatte iade etmeniz gerekmektedir. Geç teslimat durumunda, ek ücretler uygulanabilir.</p>
+
+                <h3>13.9. Çocuk koltuğu veya ek donanım kiralayabilir miyim?</h3>
+                <p>Evet, çocuk koltuğu, GPS veya diğer ek donanımlar gibi talepleriniz rezervasyon sırasında belirtilebilir. Ek hizmetler, ek ücrete tabi olabilir.</p>
+
+                <h3>13.10. Araç kiralama sırasında sigorta dahil mi?</h3>
+                <p>Kiraladığınız araç, temel sigorta kapsamına sahip olacaktır. Ancak, sigorta kapsamı dışında kalan hasarların kullanıcı tarafından karşılanması gerekebilir. Sigorta seçenekleri hakkında daha fazla bilgi almak için müşteri hizmetlerimizle iletişime geçebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ödeme Yöntemleri Modal -->
+<div id="paymentModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ödeme Yöntemleri</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Araç kiralama işlemi sırasında çeşitli ödeme yöntemlerini kullanabilirsiniz. Aşağıda, kabul edilen ödeme yöntemlerinin detaylı açıklamaları yer almaktadır:</p>
+
+                <h3>14.1. Kredi Kartı</h3>
+                <p>Site üzerinden yapılan tüm araç kiralama işlemleri için kredi kartı ile ödeme yapabilirsiniz. Kredi kartı bilgileri, güvenli bir şekilde işlenir ve şifrelenir. Kredi kartı ile ödeme yaparken, kartın üzerinde bulunan isim, numara, son kullanım tarihi ve güvenlik kodu (CVV) gibi bilgileri girmeniz gerekmektedir.</p>
+
+                <h3>14.2. Banka Kartı</h3>
+                <p>Banka kartı ile ödeme yapmak da mümkündür. Kredi kartı gibi banka kartı ile yapılan ödemeler de güvenli bir şekilde işlenir ve şifrelenir. Banka kartınızın uluslararası işlemleri kabul etmesi gerektiğini unutmayın.</p>
+
+                <h3>14.3. Peşin Ödeme</h3>
+                <p>Bazı durumlarda peşin ödeme seçeneği de sunulmaktadır. Bu durumda, araç kiralama ücretini kiralama işlemi öncesinde nakit olarak veya banka havalesi ile ödeme yapabilirsiniz. Peşin ödeme, yalnızca belirli lokasyonlarda ve rezervasyon koşullarına bağlı olarak geçerli olabilir.</p>
+
+                <h3>14.4. Diğer Ödeme Yöntemleri</h3>
+                <p>Bazı ödeme yöntemleri (örneğin, dijital cüzdanlar veya online ödeme sistemleri) belirli bölgelerde kullanılabilir. Ödeme seçenekleriniz, kiralama yapacağınız lokasyona ve aracın özelliklerine göre değişiklik gösterebilir. Site üzerinden rezervasyon yaparken geçerli ödeme yöntemlerini görebilirsiniz.</p>
+
+                <h3>14.5. Ödeme Güvenliği</h3>
+                <p>Site, ödeme işlemlerini güvenli bir şekilde gerçekleştirebilmeniz için en yüksek güvenlik standartlarını kullanmaktadır. Kredi kartı ve banka kartı bilgileri, ödeme işlemi sırasında şifreli bağlantılar üzerinden iletilir ve yalnızca yetkilendirilmiş güvenlik sistemleri tarafından işlenir.</p>
+
+                <h3>14.6. Fiyatlar ve Ek Ücretler</h3>
+                <p>Ödeme işleminden önce, toplam ücret rezervasyon ekranında gösterilecektir. Ek ücretler, ek hizmetler (örneğin, çocuk koltuğu, GPS, vb.) ve uzun süreli kiralama durumunda uygulanan indirimler veya ek ücretler gibi faktörlere göre değişebilir. Ödeme işleminden önce toplam ücretin doğru şekilde belirtildiğinden emin olabilirsiniz.</p>
+
+                <h3>14.7. İade Politikası ve Para İadesi</h3>
+                <p>Ödeme yapılan tutarın tamamı, aracı belirtilen tarihte iade etmeniz koşuluyla geri ödenir. İade politikamız, iptal ve değişiklik koşullarına bağlı olarak değişebilir. Kiralama süresi boyunca aracın herhangi bir zarar görmesi durumunda, ilgili ücretler kullanıcı tarafından ödenecektir.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Kiralama Modal -->
+<div id="rentalModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kiralama</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Site üzerinden araç kiralama işlemi oldukça basit ve kullanıcı dostudur. Aşağıda araç kiralama süreci, şartları ve koşulları hakkında detaylı bilgi bulabilirsiniz.</p>
+
+                <h3>15.1. Araç Kiralama Adımları</h3>
+                <ol>
+                    <li><strong>Rezervasyon Yapın:</strong> İhtiyacınız olan aracı ve kiralama süresini seçin. Rezervasyon sırasında kişisel bilgilerinizi ve ödeme bilgilerinizi girerek işlemi tamamlayın.</li>
+                    <li><strong>Ödeme İşlemini Tamamlayın:</strong> Ödeme yöntemlerinizi seçin ve güvenli ödeme işlemini gerçekleştirin. Ödeme işlemi tamamlandığında, rezervasyon onayınız e-posta adresinize gönderilecektir.</li>
+                    <li><strong>Aracı Teslim Alın:</strong> Belirlediğiniz tarihte ve saatte, kiralama noktasından aracınızı teslim alabilirsiniz. Teslimat sırasında kimlik doğrulama yapılacak ve araç kontrolü gerçekleştirilecektir.</li>
+                    <li><strong>Aracı Kullanın:</strong> Kiraladığınız aracı, belirtilen süre boyunca ve trafik kurallarına uygun şekilde kullanabilirsiniz.</li>
+                    <li><strong>Aracı İade Edin:</strong> Kiralama süresi sona erdiğinde, aracı belirtilen tarihte ve saatte iade etmeniz gerekmektedir. Araç, teslim aldığınız gibi temiz ve hasarsız bir şekilde iade edilmelidir.</li>
+                </ol>
+
+                <h3>15.2. Kiralama Süresi</h3>
+                <p>Araç kiralama süresi, rezervasyon sırasında belirlediğiniz tarih ve saatte başlar ve yine belirtilen tarihte sona erer. Kiralama süresi, günlük, haftalık veya daha uzun süreli seçeneklerle yapılabilir. Kiralama süresi uzatılmak istendiğinde, önceden rezervasyon yapılması önerilir.</p>
+
+                <h3>15.3. Araç Teslimat ve İade</h3>
+                <p>Rezervasyon sırasında, aracı teslim alacağınız ve iade edeceğiniz noktayı seçebilirsiniz. Teslimat sırasında, aracı almadan önce araçta herhangi bir hasar olup olmadığı kontrol edilir ve bu durum kayıt altına alınır. Araç iade edilirken, araç tekrar kontrol edilerek herhangi bir hasar veya eksiklik olup olmadığına bakılır.</p>
+
+                <h3>15.4. Araçta Sigorta</h3>
+                <p>Kiralanan araç, temel sigorta poliçesi ile teminat altına alınmıştır. Ancak, sigorta kapsamı dışında kalan hasar veya kayıplardan kullanıcı sorumludur. Sigorta seçenekleri hakkında daha fazla bilgi almak için müşteri hizmetlerimizle iletişime geçebilirsiniz.</p>
+
+                <h3>15.5. Araç Kiralama Koşulları</h3>
+                <ul>
+                    <li>Araç, sadece belirtilen sürücü tarafından kullanılabilir. Başka kişilerin aracı kullanması yasaktır.</li>
+                    <li>Kiralama süresi boyunca, kullanıcı, aracın bakımını ve güvenliğini sağlamakla yükümlüdür.</li>
+                    <li>Araç kiralama sırasında, sürücü belgenizin geçerli olması ve 21 yaşından büyük olmanız gerekmektedir.</li>
+                    <li>Araç, belirtilen tarihte ve saatte teslim edilmelidir. Gecikme durumunda ek ücretler uygulanabilir.</li>
+                </ul>
+
+                <h3>15.6. Kiralama Ücretleri</h3>
+                <p>Kiralama ücretleri, aracın türüne, kiralama süresine ve ek hizmetlere bağlı olarak değişir. Rezervasyon sırasında, toplam ücretler size gösterilecektir. Ek hizmetler (çocuk koltuğu, GPS, sigorta vb.) ek ücretlerle birlikte sunulabilir.</p>
+
+                <h3>15.7. İptal ve Değişiklik Politikası</h3>
+                <p>Rezervasyonunuzu iptal etmek veya değiştirmek isterseniz, belirli bir süre önceden bildirimde bulunmanız gerekmektedir. İptal ve değişiklik politikasına göre, yapılan değişiklikler için ücret talep edilebilir. İptal işlemi, rezervasyon tarihinden önce yapılmalı ve belirli şartlara uygun olmalıdır.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Nasıl Çalışır Modal -->
+<div id="howItWorksModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nasıl Çalışır?</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Site üzerinden araç kiralama işlemi oldukça basittir. Aşağıda, araç kiralama sürecinin adım adım nasıl işlediğini bulabilirsiniz:</p>
+
+                <h3>16.1. Araç Seçimi</h3>
+                <p>İlk adımda, ihtiyaçlarınıza uygun aracı seçmeniz gerekmektedir. Siteye giriş yaptıktan sonra, kiralamak istediğiniz aracın türünü, modelini ve kiralama süresini seçebilirsiniz. Araçlar, kullanım amacınıza göre farklı kategorilerde sunulmaktadır (ekonomik, premium, SUV, vb.).</p>
+
+                <h3>16.2. Rezervasyon Yapma</h3>
+                <p>Aracınızı seçtikten sonra, rezervasyon formunu doldurarak kiralama işlemini başlatabilirsiniz. Adınızı, soyadınızı, iletişim bilgilerinizi ve ödeme bilgilerinizi girmeniz gerekmektedir. Rezervasyonunuzu tamamladıktan sonra, size bir onay e-postası gönderilecektir.</p>
+
+                <h3>16.3. Ödeme</h3>
+                <p>Ödeme işlemi, güvenli bir şekilde yapılacaktır. Kredi kartı veya banka kartı gibi ödeme yöntemleri ile aracınızı kiralayabilirsiniz. Ödeme işlemi sırasında kullanılan tüm bilgiler şifreli olarak güvence altına alınır.</p>
+
+                <h3>16.4. Araç Teslimatı</h3>
+                <p>Rezervasyonunuz onaylandıktan sonra, belirlediğiniz tarihte ve saatte aracı teslim alabilirsiniz. Araç teslimat noktasında, kimlik doğrulama yapılacak ve araç kontrol edilecektir. Teslimat sırasında aracın mevcut durumu hakkında bilgi verilecektir.</p>
+
+                <h3>16.5. Aracı Kullanma</h3>
+                <p>Aracınızı teslim aldıktan sonra, belirtilen süre boyunca kullanabilirsiniz. Aracın bakımı, güvenliği ve trafik kurallarına uyulması kullanıcıya aittir. Eğer ek hizmetler (örneğin, çocuk koltuğu veya GPS) talep ettiyseniz, bunlar da teslimat sırasında verilecektir.</p>
+
+                <h3>16.6. Araç İadesi</h3>
+                <p>Kiralamış olduğunuz aracı, belirtilen tarihte ve saatte iade etmeniz gerekmektedir. Araç, teslim alındığı şekilde, hasarsız ve temiz bir şekilde iade edilmelidir. Araç kontrol edildikten sonra, depozito tutarı iade edilecektir, ancak herhangi bir hasar veya eksiklik bulunursa, bu tutar kesilecektir.</p>
+
+                <h3>16.7. Rezervasyon Değişiklikleri ve İptaller</h3>
+                <p>Rezervasyonunuzu değiştirmek veya iptal etmek isterseniz, önceden belirlenmiş iptal ve değişiklik politikalarına göre işlem yapabilirsiniz. İptal veya değişiklik talepleri, kiralama süresinden önce yapılmalıdır. Bu süreçle ilgili detaylı bilgi için müşteri hizmetleriyle iletişime geçebilirsiniz.</p>
+
+                <h3>16.8. Sigorta ve Güvence</h3>
+                <p>Araç kiralama işlemi sırasında, temel sigorta ve güvence sunulmaktadır. Ancak, sigorta kapsamı dışında kalan durumlar için ek ücretler talep edilebilir. İhtiyacınız olan sigorta seçenekleri hakkında daha fazla bilgi almak için kiralama sürecinde müşteri hizmetlerimizden destek alabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

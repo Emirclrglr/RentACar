@@ -1,0 +1,55 @@
+﻿@model X.PagedList.IPagedList<ResultCarPricingWithTimePeriodDto>
+
+@using X.PagedList.Mvc.Core
+
+<div class="col-xl-6">
+	<div class="card">
+		<div class="card-body">
+
+			<h4 class="card-title">Araç ve Fiyatlar Listemiz</h4>
+			<p class="card-subtitle mb-4 font-size-13">
+				Güncel | @DateTime.Now.ToString("dd MMMM, yyyy HH:mm")
+			</p>
+
+			<div class="table-responsive">
+				<table class="table table-centered table-hover table-xl mb-0" id="recent-orders">
+					<thead>
+						<tr>
+							<th class="border-top-0">Araç</th>
+							<th class="border-top-0">Saatlik</th>
+							<th class="border-top-0">Günlük</th>
+							<th class="border-top-0">Haftalık</th>
+							<th class="border-top-0">Araç Detayları</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td class="text-truncate">@item.Model</td>
+								<td>
+									<span class="badge badge-soft-secondary p-2">@item.HourlyPrice ₺</span>
+								</td>
+								<td>
+									<span class="badge badge-soft-secondary p-2">@item.DailyPrice ₺</span>
+								</td>
+								<td>
+									<span class="badge badge-soft-secondary p-2">@item.WeeklyPrice ₺</span>
+								</td>
+								<td class="text-truncate"><a target="_blank" href="/Car/CarDetails/@item.CarId" class="btn btn-outline-info">Araç Detayları</a></td>
+							</tr>
+
+						}
+					</tbody>
+				</table>
+				<div class="d-flex justify-content-end">
+					<nav aria-label="Sayfalandırma" class="mt-3" style="font-size: 12px">
+						@Html.PagedListPager(Model, page => Url.Action("Index", new { carPricingPage = page }),
+						new PagedListRenderOptions { LiElementClasses = new[] { "page-item mr-2" }, PageClasses = new[] { "page-link" } })
+					</nav>
+				</div>
+			</div>
+
+		</div> <!-- end card-body-->
+	</div> <!-- end card-->
+</div> <!-- end col -->

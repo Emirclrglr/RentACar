@@ -1,0 +1,70 @@
+﻿@model X.PagedList.IPagedList<ResultCarWithBrandDto>
+
+@using X.PagedList.Mvc.Core
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+	<div class="card-body">
+		<h4 class="card-title text-center mb-4">Araba İşlemleri</h4>
+
+		<div class="table-responsive">
+			<table class="table table-hover mb-0">
+				<thead>
+					<tr class="text-center">
+						<th>Görsel</th>
+						<th>Marka</th>
+						<th>Model</th>
+						<th>Kilometre</th>
+						<th>Vites Türü</th>
+						<th>Koltuk Sayısı</th>
+						<th>Bagaj Sayısı</th>
+						<th>Yakıt Türü</th>
+						<th>Fiyatlandırma Bilgisi</th>
+						<th>Araç Özellikleri</th>
+						<th>Düzenle</th>
+						<th>Sil</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr class="text-center" style="font-size: 14px">
+							<td class="align-middle"><img src="@item.CoverIMG" class="rounded" style="width: 150px; height: 100px" /></td>
+							<td class="align-middle">@item.BrandName</td>
+							<td class="align-middle">@item.Model</td>
+							<td class="align-middle">@item.Kilometer KM</td>
+							<td class="align-middle">@item.Transmission</td>
+							<td class="align-middle">@item.Seats</td>
+							<td class="align-middle">@item.Luggage</td>
+							<td class="align-middle">@item.FuelType</td>
+							<td class="align-middle"><a href="#" class="rounded-pill btn btn-outline-success"><i class="las la-money-bill-wave" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/CarFeature/Index/@item.Id" class="rounded-pill btn btn-outline-warning"><i class="las la-car-side" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/Car/UpdateCar/@item.Id" class="rounded-pill btn btn-outline-primary"><i class="las la-edit" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/Car/DeleteCar/@item.Id" class="rounded-pill btn btn-outline-danger"><i class="las la-trash" style="font-size: 20px"></i></a></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+	<!-- end card-body-->
+
+	<div class="d-flex justify-content-between">
+		<a href="/Admin/Car/CreateCar" class="btn btn-outline-primary ml-5 mt-3 px-5" style="height: 36px">+ Yeni Araç Girişi</a>
+		<nav aria-label="Sayfalandırma" class="d-flex justify-content-end mt-3 mb-3 mr-5" style="font-size: 16px">
+			@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+							new PagedListRenderOptions
+			{
+				LiElementClasses = new[] { "page-item mr-2" },
+				PageClasses = new[] { "page-link" }
+			})
+		</nav>
+	</div>
+
+</div>

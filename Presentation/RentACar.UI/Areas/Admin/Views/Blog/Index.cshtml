@@ -1,0 +1,63 @@
+﻿@model X.PagedList.IPagedList<ResultBlogsDto>
+
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+	<div class="card-body">
+		<h4 class="card-title text-center mb-4">Blog İşlemleri</h4>
+
+		<div class="table-responsive">
+			<table class="table table-hover mb-0">
+				<thead>
+					<tr class="text-center">
+						<th>Görsel</th>
+						<th>Başlık</th>
+						<th>Yazar</th>
+						<th>Oluşturulma Tarihi</th>
+						<th>Sitede Gör</th>
+						<th>Yorumlar</th>
+						<th>Düzenle</th>
+						<th>Sil</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr class="text-center" style="font-size: 14px">
+							<td class="align-middle"><img src="@item.CoverImgUrl" class="rounded" style="width: 150px; height: 100px" /></td>
+							<td class="align-middle">@item.Title</td>
+							<td class="align-middle">@item.AuthorName</td>
+							<td class="align-middle">@item.CreatedDate.ToString("dd MMMM yyyy")</td>
+							<td class="align-middle"><a href="/Blog/BlogDetails/@item.Id" target="_blank" class="rounded-pill btn btn-outline-info"><i class="las la-eye" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/Blog/BlogComments/@item.Id" class="rounded-pill btn btn-outline-warning"><i class="las la-comment" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/Blog/UpdateBlog/@item.Id" class="rounded-pill btn btn-outline-primary"><i class="las la-edit" style="font-size: 20px"></i></a></td>
+							<td class="align-middle"><a href="/Admin/Blog/DeleteBlog/@item.Id" class="rounded-pill btn btn-outline-danger"><i class="las la-trash" style="font-size: 20px"></i></a></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+	<!-- end card-body-->
+
+	<div class="d-flex justify-content-between">
+		<a href="/Admin/Blog/CreateBlog" class="btn btn-outline-primary ml-5 mt-3 px-5" style="height: 36px">+ Yeni Blog Girişi</a>
+		<nav aria-label="Sayfalandırma" class="d-flex justify-content-end mt-3 mb-3 mr-5" style="font-size: 16px">
+			@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+							new PagedListRenderOptions
+			{
+				LiElementClasses = new[] { "page-item mr-2" },
+				PageClasses = new[] { "page-link" }
+			})
+		</nav>
+	</div>
+
+</div>
+

@@ -1,0 +1,294 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title mb-4 text-center">İstatistikler</h4>
+
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-primary border-primary">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Toplam Araç Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.carCount
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-success border-success">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Toplam Lokasyon Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.locationCount
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-warning border-warning">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Toplam Yazar Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.authorCount
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-info border-info">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Toplam Blog Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.blogCount
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-primary border-primary">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Toplam Marka Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.brandCount
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-success border-success">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Ort. Günlük Araç Kiralama Fiyatı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.averageDailyCarRentalPrice
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-warning border-warning">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Ort. Saatlik Araç Kiralama Fiyatı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.averageHourlyCarRentalPrice
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-info border-info">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Ort. Haftalık Araç Kiralama Fiyatı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.averageWeeklyCarRentalPrice
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-primary border-primary">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Otomatik Vites Araç Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.automaticCarCount
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-success border-success">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">En Çok Sahip Olduğumuz Araç Markası</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.brandWithTheMostVehicles
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-warning border-warning">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">1000km'den Düşük Araç Sayımız</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.vehicleCountWithLessThan1000KmAsync
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-info border-info">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Benzinli ve Dizel Araç Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.vehicleCountByFuelTypeGasOrDiesel
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-primary border-primary">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Elektrikli Araç Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.vehicleCountByFuelTypeElectric
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-success border-success">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">En Pahalı Aracımız</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.mostExpensiveVehicle
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-warning border-warning">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">En Ucuz Aracımız</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.cheapestVehicle
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card bg-info border-info">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0 text-white">Toplam Hizmet Sayısı</h5>
+                        </div>
+                        <div class="row d-flex align-items-center mb-4">
+                            <div class="col-12">
+                                <h2 class="d-flex align-items-center mb-0 text-white justify-content-center">
+                                    @ViewBag.serviceCount
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

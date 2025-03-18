@@ -1,0 +1,18 @@
+﻿@model CreateCommentDto
+<div class="comment-form-wrap pt-5">
+	<h3 class="mb-5">Yorum Yapın</h3>
+	<form method="post" asp-action="LeaveAComment" asp-controller="Blog" class="p-5 bg-light">
+		<div class="form-group">
+			<label>Adınız <sup class="text-danger">*</sup></label>
+			<input type="text" class="form-control" asp-for="Name">
+		</div>
+		<div class="form-group">
+			<label>Mesajınız <sup class="text-danger">*</sup></label>
+			<textarea asp-for="MessageContent" id="message" cols="30" rows="10" class="form-control"></textarea>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn py-3 px-4 btn-primary">Gönder</button>
+		</div>
+	</form>
+</div>
+

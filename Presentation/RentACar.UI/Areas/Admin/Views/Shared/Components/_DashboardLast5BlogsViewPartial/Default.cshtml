@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ResultBlogsDto>
+<div class="col-xl-6">
+	<div class="card">
+		<div class="card-body">
+
+			<h4 class="card-title">Son Açılan 6 Blog</h4>
+			<p class="card-subtitle mb-4 font-size-13">
+				Güncel | @DateTime.Now.ToString("dd MMMM, yyyy HH:mm")
+			</p>
+
+			<div class="table-responsive">
+				<table class="table table-centered table-hover table-xl mb-0" id="recent-orders">
+					<thead>
+						<tr>
+							<th class="border-top-0">Blog Başlığı</th>
+							<th class="border-top-0">Yazar</th>
+							<th class="border-top-0">Oluşturulma Tarihi</th>
+							<th class="border-top-0">Bloga Git</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							string titleFormat = "";
+							if(item.Title.Length > 100)
+							{
+								titleFormat = $"{item.Title.Substring(0, 100)}...";
+							}
+							else
+							{
+								titleFormat = item.Title;
+							}
+							
+							<tr>
+								<td class="text-truncate">@titleFormat</td>
+								<td class="text-truncate">@item.AuthorName</td>
+								<td class="text-truncate">@item.CreatedDate.ToString("dd MMMM, yyyy HH:mm")</td>
+								<td class="text-truncate"><a href="/Blog/BlogDetails/@item.Id" class="btn btn-outline-info"><i class="las la-newspaper" style="font-size: 20px"></i></a></td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+
+		</div> <!-- end card-body-->
+	</div> <!-- end card-->
+</div> <!-- end col -->

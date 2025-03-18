@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ResultAboutDto>
+
+<section class="ftco-section ftco-about">
+    <div class="container">
+        @foreach (var item in Model){
+            <div class="row no-gutters">
+                <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(@item.ImageURL);">
+                </div>
+                <div class="col-md-6 wrap-about ftco-animate">
+                    <div class="heading-section heading-section-white pl-md-5">
+                        <span class="subheading">Hakkımızda</span>
+                        <h2 class="mb-4">@item.Title</h2>
+                        <p>@Html.Raw(item.Description.Replace("\n", "<br />"))</p>
+                        <p><a href="#" class="btn btn-primary py-3 px-4">Araç Kiralayın</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

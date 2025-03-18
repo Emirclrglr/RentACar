@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ResultLast3BlogsWithAuthorDto>
+<div class="sidebar-box ftco-animate">
+    <h3>Son bloglar</h3>
+    @foreach (var item in Model)
+    {
+        <div class="block-21 mb-4 d-flex">
+            <a class="blog-img mr-4" style="background-image: url(@item.CoverImgUrl);"></a>
+            <div class="text">
+                <h3 class="heading"><a href="#">@item.Title</a></h3>
+                <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> @item.CreatedDate.ToString("dd MMM, yyyy")</a></div>
+                    <div><a href="#"><span class="icon-person"></span> @item.AuthorName.Split(' ')[0]</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 0</a></div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

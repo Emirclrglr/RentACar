@@ -1,0 +1,105 @@
+﻿@model X.PagedList.IPagedList<ResultContactDto>
+
+@using X.PagedList.Mvc.Core
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+	<div class="card-body">
+		<h4 class="card-title text-center mb-4">İletişim</h4>
+
+		<div class="table-responsive">
+			<table class="table table-hover mb-0">
+				<thead>
+					<tr class="text-center">
+						<th>Gönderen</th>
+						<th>Gönderen Mail</th>
+						<th>Konu</th>
+						<th>Gönderilme Tarihi</th>
+						<th>Mesajı Oku</th>
+						<th>Sil</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr class="text-center" style="font-size: 14px">
+							<td class="align-middle">@item.Name</td>
+							<td class="align-middle">@item.Email</td>
+							<td class="align-middle">@item.Subject</td>
+							<td class="align-middle">@item.SendDate.ToString("dd MMMM, yyyyy")</td>
+							<td class="align-middle">
+								<button value="@item.Id" class="rounded-pill btn btn-outline-primary viewMessage">
+									<i class="las la-comment" style="font-size: 20px"></i>
+								</button>
+							</td>
+							<td class="align-middle"><a href="/Admin/Car/DeleteCar/@item.Id" class="rounded-pill btn btn-outline-danger"><i class="las la-trash" style="font-size: 20px"></i></a></td>
+						</tr>					
+					}
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+
+	<div class="d-flex justify-content-end">
+		<nav aria-label="Sayfalandırma" class="d-flex justify-content-end mt-3 mb-3 mr-5" style="font-size: 16px">
+			@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+							new PagedListRenderOptions
+			{
+				LiElementClasses = new[] { "page-item mr-2" },
+				PageClasses = new[] { "page-link" }
+			})
+		</nav>
+	</div>
+
+</div>
+
+<div class="modal fade" id="messageDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="d-block">
+					<h5 class="modal-title" id="exampleModalLongTitle">Gönderen: ....</h5>
+					<h5 class="modal-title mt-2" id="exampleModalLongTitle">Konu: ....</h5>
+				</div>
+
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				....
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$(".viewMessage").click(function () {
+			var messageId = $(this).val(); 
+			$.ajax({
+				url: "/Admin/Contact/MessageDetails/" + messageId, 
+				type: "GET",
+				success: function (response) {
+					$("#messageDetailsModal .modal-title").eq(0).text("Gönderen: " + response.name);
+					$("#messageDetailsModal .modal-title").eq(1).text("Konu: " + response.subject);
+					$("#messageDetailsModal .modal-body").text(response.messageContent);
+					$("#messageDetailsModal").modal("show");
+				},
+				error: function () {
+					alert("Mesaj detayları alınamadı!");
+				}
+			});
+		});
+	});
+</script>

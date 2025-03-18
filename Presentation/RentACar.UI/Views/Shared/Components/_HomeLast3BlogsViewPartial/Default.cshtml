@@ -1,0 +1,55 @@
+﻿@using Newtonsoft.Json
+@using RentACar.UI.APIConnection
+@using Microsoft.Extensions.Configuration;
+@using System.Net.Http;
+@model IEnumerable<ResultLast3BlogsWithAuthorDto>
+@{
+	IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+	HttpClient httpClient = new();
+	ApiConfig apiConfig = new(configuration);
+
+	async Task<int> CommentCount(int id)
+	{
+		var responseMessage = await httpClient.GetAsync($"{apiConfig.BaseUrl}Comments/GetCommentCountByBlogId/{id}");
+		var jsonData = await responseMessage.Content.ReadAsStringAsync();
+		var values = JsonConvert.DeserializeObject<int>(jsonData);
+		return values;
+	}
+}
+<section class="ftco-section">
+	<div class="container">
+		<div class="row justify-content-center mb-5">
+			<div class="col-md-7 heading-section text-center ftco-animate">
+				<span class="subheading">Blog</span>
+				<h2>En Son Bloglar</h2>
+			</div>
+		</div>
+		<div class="row d-flex">
+			@foreach (var item in Model)
+			{
+				string title = "";
+				if (item.Title.Length > 60)
+					title = $"{item.Title.Substring(0, 60)}...";
+				else
+					title = item.Title;
+				<div class="col-md-4 d-flex ftco-animate">
+					<div class="blog-entry justify-content-end">
+						<a href="/Blog/BlogDetails/@item.Id" class="block-20" style="background-image: url('@item.CoverImgUrl');">
+						</a>
+						<div class="text pt-4">
+							<div class="meta mb-3">
+								<div><a href="/Blog/BlogDetails/@item.Id">@item.CreatedDate.ToString("dd MMM, yyyy")</a></div>
+								<div><a href="/Blog/BlogDetails/@item.Id">@item.AuthorName</a></div>
+								<div><a href="/Blog/BlogDetails/@item.Id" class="meta-chat"><span class="icon-chat"></span> @await CommentCount(item.Id)</a></div>
+							</div>
+							<h3 class="heading mt-2"><a href="#">@title</a></h3>
+							<p><a href="/Blog/BlogDetails/@item.Id" class="btn btn-primary">Devamını Oku</a></p>
+						</div>
+					</div>
+				</div>
+
+			}
+		</div>
+	</div>
+</section>

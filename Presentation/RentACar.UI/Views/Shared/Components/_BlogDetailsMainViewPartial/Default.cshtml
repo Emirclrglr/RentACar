@@ -1,0 +1,19 @@
+﻿@model ResultBlogsDto
+
+    <h2 class="mb-3">@Model.Title</h2>
+    <p>@Html.Raw(Model.Description)</p>
+
+    @await Component.InvokeAsync("_BlogDetailsTagCloudByBlogViewPartial", new { Id = ViewBag.blogId })
+
+    @await Component.InvokeAsync("_BlogDetailsAuthorAboutViewPartial", new { Id = ViewBag.blogId })
+
+
+
+    <div class="pt-5 mt-5">
+
+        @await Component.InvokeAsync("_CommentListByBlogViewPartial", new { Id = ViewBag.blogId })
+        <!-- END comment-list -->
+
+    </div>
+
+
